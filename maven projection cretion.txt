@@ -1,0 +1,47 @@
+Creation of maven project:
+open maven project --> apache quickstart-->org.jsp.chetan    hibooo --->finish
+1.pom.xml-->path of hibernate ,jdbc,jakarta, ctrl+s
+2.IN src/main/java---->create file (database property & hibernate property also mapping at the last )
+
+hibernate.cfg.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<hibernate-configuration>
+  <session-factory>
+    <!-- Database Properties -->
+    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="connection.url">jdbc:mysql://localhost:3307/hibernate?createDatabaseIfNotExist=true</property>
+    <property name="connection.username">root</property>
+    <property name="connection.password">chetan</property>
+
+    <!-- Hibernate Properties -->
+    <property name="hbm2ddl.auto">update</property>
+    <property name="show_sql">true</property>
+    <property name="format_sql">true</property>
+    <property name="dialect">org.hibernate.dialect.MySQL55Dialect</property>
+    <mapping class="org.jsp.chetan.demo_hib.Student"/>
+  </session-factory>
+</hibernate-configuration>
+
+3.in the same 
+src/main/java- create a class what ever they mentioned like(student class ,employee class) write all the fileds create pojo class ,default constructor, getters and setters  and tostring method
+
+4. in app.java ---->
+
+write scanner class for all the field  
+step1-->create the obj of student class
+step2-->Configuration conf=new Configuration();
+	conf.configure("hibernate.cfg.xml");
+step3:-->SessionFactory factory=conf.buildSessionFact();
+	
+Step4:-->Session session =factory.opensession();
+
+
+Step5:---->Transaction transaction=session.beginTransaction();
+
+Step6:---> session.persist(student class obj);
+
+tansaction.commit;
+session.close();
+factory.close();
